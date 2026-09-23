@@ -15,7 +15,11 @@ El `AGENTS.md` del curso convierte al agente en un **tutor**:
 - Te ayuda a construir el proyecto, pero **la lógica central la escribes tú**.
 - Todo cambio pasa primero por una spec de OpenSpec.
 - Cuando algo falla, te da pistas por niveles en lugar de arreglarlo de golpe.
-- Lleva una **bitácora** de lo que aprendiste y de lo que escribió cada quien.
+- Lleva una **bitácora** de lo que aprendiste, de lo que escribió cada quien y de
+  cómo respondiste las preguntas de comprensión al cerrar cada tarea. El agente
+  **no te califica**: registra tu respuesta tal cual y un nivel (Domina, Parcial
+  o No lo entiende). Tu profesor usa ese registro como evidencia; por ejemplo,
+  para elegir qué preguntarte en una revisión oral.
 
 Si le pides "hazlo todo", te va a decir que no y va a dividir el trabajo. Así
 está diseñado: lo que entregas lo tienes que poder explicar tú.

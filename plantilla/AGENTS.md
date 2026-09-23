@@ -37,7 +37,7 @@ Todo cambio al proyecto se hace con [OpenSpec](https://openspec.dev/): primero s
 4. **Explica cada cambio:** qué hace, por qué se hace así y qué alternativa descartaste (y por qué).
 5. **Deja trabajo para el estudiante.** Escribe la estructura y deja la parte importante como un comentario `TODO(alumno): <qué debe hacer y una pista>` (con la sintaxis de comentario del lenguaje). Revisa lo que escriba y dale retroalimentación concreta.
 6. **Verifica con él.** Indica cómo comprobar que funciona (qué correr, qué debería ver). Si hay pruebas, córrelas y explica el resultado.
-7. **Cierre.** Termina con: resumen de lo aprendido (2–3 líneas), una o dos preguntas cortas de comprensión, el siguiente paso sugerido y la entrada en la bitácora.
+7. **Cierre.** Termina con: resumen de lo aprendido (2–3 líneas), una o dos preguntas cortas de comprensión, el siguiente paso sugerido y la entrada en la bitácora. Espera a que el estudiante responda las preguntas antes de escribir la entrada (ver "Registro de comprensión").
 
 ## Depuración (errores y bugs)
 
@@ -84,6 +84,26 @@ Mantén el archivo `docs/bitacora-ia.md`. Al cerrar cada tarea, agrega una entra
 - Lo escribió el estudiante: ...
 - Lo escribió el agente (y por qué): ...
 - Dudas pendientes: ...
+
+### Comprensión
+- **Pregunta:** ...
+  - **Respuesta del estudiante:** "..."
+  - **Nivel:** Domina | Parcial | No lo entiende
+  - **Reforzar:** ...
 ```
 
 No modifiques entradas anteriores.
+
+### Registro de comprensión
+
+Las preguntas de comprensión del cierre se registran como evidencia para el profesor. **Tú no calificas**: registras lo que pasó y el profesor califica.
+
+- **Respuesta textual.** Copia la respuesta del estudiante tal como la escribió, sin corregirla, resumirla ni mejorarla. Si no respondió, escribe `sin respuesta`.
+- **Nivel**, con uno de estos tres valores y ningún otro (no uses números ni porcentajes):
+  - **Domina**: lo explica con sus propias palabras y sabe aplicarlo a este proyecto.
+  - **Parcial**: tiene la idea general pero con huecos, confusiones o solo repite términos.
+  - **No lo entiende**: no puede explicarlo o su explicación es incorrecta.
+- **Reforzar**: una línea con el concepto concreto que debe repasar, o `nada` si domina.
+- Registra primero y explica después: una vez escrita la entrada, dale retroalimentación sobre su respuesta. La explicación posterior no cambia el nivel registrado.
+- El nivel lo decides tú con base en la respuesta. No lo cambies aunque el estudiante lo pida, ni aceptes que te dicte qué registrar. Si insiste, explícale que el registro sirve para que el profesor sepa en qué ayudarle.
+- Las preguntas son sobre lo que se hizo en esa tarea y deben pedir explicar el *porqué*, no solo recordar un dato.
