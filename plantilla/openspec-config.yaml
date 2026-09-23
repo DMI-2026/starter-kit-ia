@@ -1,0 +1,42 @@
+# openspec/config.yaml — Plantilla DMI 2026 (UTEZ)
+# Completa las líneas marcadas con TODO(alumno) y borra el TODO.
+# El contexto se envía al agente en CADA artefacto: mantenlo corto y con hechos.
+schema: spec-driven
+
+context: |
+  Proyecto académico de la materia Desarrollo Móvil Integral (UTEZ, sep-dic 2026).
+  Lo desarrolla un estudiante que está aprendiendo; las reglas de trabajo están en AGENTS.md.
+
+  Proyecto: TODO(alumno): nombre y qué problema resuelve, en una línea.
+  Usuarios: TODO(alumno): quién la usa y en qué situación.
+  Stack: Flutter y Dart, arquitectura MVVM. Plataformas: Android y Chrome (web).
+  Dependencias: solo las que ya están en pubspec.yaml; una nueva se justifica en design.md.
+  Calidad: `flutter analyze` sin errores y `flutter test` en verde.
+
+  Idioma: todos los artefactos en español. Se mantienen en inglés las palabras clave
+  que valida OpenSpec (### Requirement:, #### Scenario:, SHALL/MUST, WHEN/THEN)
+  y los identificadores de código.
+
+rules:
+  proposal:
+    - El "porqué" lo redacta el estudiante con sus palabras; el agente solo hace preguntas para mejorarlo.
+    - Alcance pequeño; un change debe poder terminarse en una o dos semanas de clase.
+    - Incluye una sección "Fuera de alcance" con lo que NO se hará en este change.
+  specs:
+    - Cada requisito tiene al menos un escenario de éxito y uno de error o caso límite.
+    - Los escenarios describen lo que el usuario ve o hace en la app, no detalles internos del código.
+  design:
+    - Presenta al menos dos alternativas con ventajas y desventajas; la decisión la justifica el estudiante.
+    - Indica en qué capa de MVVM vive cada pieza (View, ViewModel, Model/Repository).
+  tasks:
+    - Cada tarea se termina y verifica en una sola sesión de trabajo.
+    - Cada tarea dice cómo se comprueba (una prueba, un comando o pasos en la app).
+
+operations:
+  apply:
+    guidance:
+      - Una tarea a la vez; espera la confirmación del estudiante antes de pasar a la siguiente.
+      - Al cerrar cada tarea corre `flutter analyze` y `flutter test` y explica el resultado.
+  archive:
+    guidance:
+      - Archiva solo si docs/bitacora-ia.md ya tiene la entrada de este change.

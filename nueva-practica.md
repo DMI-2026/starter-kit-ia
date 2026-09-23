@@ -78,7 +78,29 @@ Invoke-WebRequest https://raw.githubusercontent.com/DMI-2026/starter-kit-ia/main
 > **No lo modifiques.** Es el mismo archivo para todo el grupo. Si crees que algo
 > debería cambiar, coméntalo con tu profesor.
 
-### 4. Crear la bitácora
+### 4. Reemplazar la configuración de OpenSpec
+
+La plantilla del curso le dice al agente qué stack usas (Flutter, MVVM), en qué
+idioma escribir y qué debe tener cada propuesta, spec, diseño y lista de tareas.
+
+**macOS / Linux:**
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/DMI-2026/starter-kit-ia/main/plantilla/openspec-config.yaml -o openspec/config.yaml
+```
+
+**Windows (PowerShell):**
+
+```powershell
+Invoke-WebRequest https://raw.githubusercontent.com/DMI-2026/starter-kit-ia/main/plantilla/openspec-config.yaml -OutFile openspec/config.yaml
+```
+
+Abre `openspec/config.yaml` y **completa las dos líneas `TODO(alumno)`**: el
+nombre del proyecto, qué problema resuelve y quién lo usa. A diferencia de
+`AGENTS.md`, este archivo **sí es tuyo**: si tu práctica usa algo distinto
+(otra plataforma, una base de datos), agrégalo al `context`.
+
+### 5. Crear la bitácora
 
 El agente escribe en `docs/bitacora-ia.md`. Créala vacía con un título:
 
@@ -94,7 +116,7 @@ mkdir -p docs && echo "# Bitácora de IA" > docs/bitacora-ia.md
 New-Item -ItemType Directory -Force docs | Out-Null; Set-Content docs/bitacora-ia.md "# Bitácora de IA"
 ```
 
-### 5. Guardar en git
+### 6. Guardar en git
 
 ```bash
 git add AGENTS.md docs/ openspec/ .agent/ .agents/
