@@ -25,5 +25,6 @@ Sigue los archivos **en este orden**.
 | Paso | Archivo | Qué hace |
 | --- | --- | --- |
 | 1 | [`antigravity-cli.md`](antigravity-cli.md) | Instalar Antigravity CLI (`agy`) en macOS, Linux o Windows |
+| 2 | [`gemini-estudiantes.md`](gemini-estudiantes.md) | Obtener Google AI Plus gratis por 1 año como estudiante |
 
 Los siguientes pasos se agregarán conforme avance el curso.
