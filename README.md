@@ -27,5 +27,6 @@ Sigue los archivos **en este orden**.
 | 1 | [`antigravity-cli.md`](antigravity-cli.md) | Instalar Antigravity CLI (`agy`) en macOS, Linux o Windows |
 | 2 | [`gemini-estudiantes.md`](gemini-estudiantes.md) | Obtener Google AI Plus gratis por 1 año como estudiante |
 | 3 | [`openspec.md`](openspec.md) | Instalar OpenSpec y configurarlo para Antigravity |
+| 4 | [`nueva-practica.md`](nueva-practica.md) | Preparar cada práctica con el `AGENTS.md` del curso |
 
 Los siguientes pasos se agregarán conforme avance el curso.
