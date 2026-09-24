@@ -30,13 +30,17 @@
   # de un JSON pasado como argumento a `openspec config set`.
   $cfgPath = (openspec config path | Out-String).Trim()
   $cfg = if (Test-Path $cfgPath) { Get-Content $cfgPath -Raw | ConvertFrom-Json } else { [pscustomobject]@{} }
-  $workflows = if ($cfg.profile -eq 'custom' -and $cfg.workflows) { @($cfg.workflows) } else { @('propose', 'explore', 'apply', 'update', 'sync', 'archive') }
-  if ($workflows -notcontains 'verify') { $workflows += 'verify' }
-  $cfg | Add-Member -NotePropertyName profile -NotePropertyValue 'custom' -Force
-  $cfg | Add-Member -NotePropertyName workflows -NotePropertyValue $workflows -Force
-  New-Item -ItemType Directory -Force (Split-Path $cfgPath) | Out-Null
-  [IO.File]::WriteAllText($cfgPath, ($cfg | ConvertTo-Json -Depth 10))  # UTF-8 sin BOM
-  Ok 'Flujo verify activado en OpenSpec'
+  if ($cfg.profile -eq 'custom' -and @($cfg.workflows) -contains 'verify') {
+    Ok 'Flujo verify ya estaba activo en OpenSpec (sin cambios)'
+  } else {
+    $workflows = if ($cfg.profile -eq 'custom' -and $cfg.workflows) { @($cfg.workflows) } else { @('propose', 'explore', 'apply', 'update', 'sync', 'archive') }
+    if ($workflows -notcontains 'verify') { $workflows += 'verify' }
+    $cfg | Add-Member -NotePropertyName profile -NotePropertyValue 'custom' -Force
+    $cfg | Add-Member -NotePropertyName workflows -NotePropertyValue $workflows -Force
+    New-Item -ItemType Directory -Force (Split-Path $cfgPath) | Out-Null
+    [IO.File]::WriteAllText($cfgPath, ($cfg | ConvertTo-Json -Depth 10))  # UTF-8 sin BOM
+    Ok 'Flujo verify activado en OpenSpec'
+  }
 
   # 3. OpenSpec para Antigravity (skills y workflows en .agents/)
   $env:OPENSPEC_NO_ANIMATION = '1'
@@ -60,7 +64,8 @@
   # 6. Bitácora
   if (-not (Test-Path docs/bitacora-ia.md)) {
     New-Item -ItemType Directory -Force docs | Out-Null
-    Set-Content docs/bitacora-ia.md '# Bitácora de IA' -Encoding utf8
+    # Ruta absoluta: .NET resuelve rutas relativas contra su propio directorio, no contra el de PowerShell.
+    [IO.File]::WriteAllText((Join-Path (Get-Location).Path 'docs/bitacora-ia.md'), "# Bitácora de IA`n")  # UTF-8 sin BOM
     Ok 'docs/bitacora-ia.md creado'
   }
 

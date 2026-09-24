@@ -25,7 +25,14 @@ El `AGENTS.md` del curso convierte al agente en un **mentor**:
 ## Antes de empezar
 
 Necesitas tener listos los pasos anteriores:
-[Antigravity CLI](antigravity-cli.md) y [OpenSpec](openspec.md).
+
+- [Antigravity CLI](antigravity-cli.md) instalado.
+- [OpenSpec](openspec.md) instalado.
+- [Git y GitHub CLI](github-cli.md) configurados, sobre todo tu nombre y correo
+  en git (paso 3 de esa guía). Sin eso, el commit del final falla con
+  *"Please tell me who you are"*.
+- Tu proyecto Flutter ya creado (por ejemplo, con `flutter create mi_practica`).
+  Todos los pasos se hacen **dentro** de esa carpeta.
 
 ## Opción rápida: un solo comando
 

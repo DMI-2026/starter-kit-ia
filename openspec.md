@@ -26,14 +26,18 @@ Tú **revisas y corriges esos documentos antes** de que el agente toque el códi
 Es lo mismo que se hace en los equipos de la industria con un documento de
 diseño o un ticket bien escrito: nadie construye sin haber acordado los planos.
 
-El ciclo tiene cuatro comandos que usas **dentro del agente**:
+En el curso, el ciclo tiene cinco comandos que usas **dentro del agente**:
 
 ```text
 /opsx:explore   → pensar el problema con el agente, sin escribir código
 /opsx:propose   → crear proposal, specs, design y tasks
 /opsx:apply     → implementar las tareas
+/opsx:verify    → comprobar que el código cumple cada escenario de la spec
 /opsx:archive   → cerrar el cambio y actualizar las specs del proyecto
 ```
+
+`/opsx:verify` no viene activado por defecto en OpenSpec. Se activa al
+[preparar cada práctica](nueva-practica.md); no tienes que hacer nada ahora.
 
 ## Antes de empezar
 

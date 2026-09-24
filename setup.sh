@@ -27,18 +27,25 @@ elif [ "$(git rev-parse --show-toplevel)" != "$(pwd -P)" ]; then
 fi
 
 # 2. Activar /opsx:verify en OpenSpec (configuración global, sin borrar flujos que ya tengas)
+# Supone que `openspec config get workflows` imprime un arreglo JSON en una línea,
+# como ["propose","apply"]; así lo hace OpenSpec 1.13.
 core='["propose","explore","apply","update","sync","archive"]'
+profile="$(openspec config get profile 2>/dev/null || true)"
 workflows="$(openspec config get workflows 2>/dev/null || true)"
-if [ "$(openspec config get profile 2>/dev/null)" != custom ] || [ -z "$workflows" ] || [ "$workflows" = "[]" ]; then
-  workflows="$core"
+if [ "$profile" = custom ] && case "$workflows" in *'"verify"'*) true ;; *) false ;; esac; then
+  ok "Flujo verify ya estaba activo en OpenSpec (sin cambios)"
+else
+  if [ "$profile" != custom ] || [ -z "$workflows" ] || [ "$workflows" = "[]" ]; then
+    workflows="$core"
+  fi
+  case "$workflows" in
+    *'"verify"'*) ;;
+    *) workflows="${workflows%]},\"verify\"]" ;;
+  esac
+  openspec config set profile custom >/dev/null
+  openspec config set workflows "$workflows" >/dev/null
+  ok "Flujo verify activado en OpenSpec"
 fi
-case "$workflows" in
-  *'"verify"'*) ;;
-  *) workflows="${workflows%]},\"verify\"]" ;;
-esac
-openspec config set profile custom >/dev/null
-openspec config set workflows "$workflows" >/dev/null
-ok "Flujo verify activado en OpenSpec"
 
 # 3. OpenSpec para Antigravity (skills y workflows en .agents/)
 OPENSPEC_NO_ANIMATION=1 openspec init --tools antigravity --profile custom </dev/null >/dev/null
