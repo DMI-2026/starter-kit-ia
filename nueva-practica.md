@@ -10,39 +10,38 @@ opcional.
 a trabajar** en tu proyecto. Antigravity (la CLI y la app) lo busca en la raíz
 del repositorio y lo sigue como reglas del proyecto.
 
-El `AGENTS.md` del curso convierte al agente en un **tutor**:
+El `AGENTS.md` del curso convierte al agente en un **mentor**:
 
-- Te ayuda a construir el proyecto, pero **la lógica central la escribes tú**.
-- Todo cambio pasa primero por una spec de OpenSpec.
-- Cuando algo falla, te da pistas por niveles en lugar de arreglarlo de golpe.
-- Lleva una **bitácora** de lo que aprendiste, de lo que escribió cada quien y de
-  cómo respondiste las preguntas de comprensión al cerrar cada tarea. El agente
-  **no te califica**: registra tu respuesta tal cual y un nivel (Domina, Parcial
-  o No lo entiende). Tu profesor usa ese registro como evidencia; por ejemplo,
-  para elegir qué preguntarte en una revisión oral.
+- Responde corto, te pregunta una cosa a la vez y te explica el **porqué** de
+  cada cambio.
+- Si afirmas algo que no es correcto, no te da la razón: te explica por qué y
+  te muestra la forma correcta.
+- Todo cambio de funcionalidad pasa por el flujo de OpenSpec:
+  explore → propose → **cuestionario** → apply → archive.
 
-Si le pides "hazlo todo", te va a decir que no y va a dividir el trabajo. Así
-está diseñado: lo que entregas lo tienes que poder explicar tú.
+### El cuestionario antes del apply
+
+Después de `/opsx:propose`, el agente **no implementa nada** hasta que respondas
+un cuestionario de **al menos 10 preguntas** sobre los artefactos del change
+(`proposal.md`, `specs/`, `design.md` y `tasks.md`). Sirve para comprobar que
+sabes lo que estás pidiendo y que leíste lo que se generó.
+
+- Te hace **una pregunta a la vez**. Son preguntas abiertas, no de opción
+  múltiple.
+- Si te equivocas, te dice qué sección releer y te hace otra pregunta parecida.
+  Puedes intentarlo las veces que necesites.
+- Cuando respondes bien todas, **desbloquea el apply**.
+- Todo queda registrado en `docs/bitacora-ia.md`: tus respuestas tal cual las
+  escribiste y cuántos intentos te tomó cada una. Tu profesor revisa ese
+  registro.
+
+**Lee los artefactos antes de pedir el apply.** Es la forma más rápida de pasar
+el cuestionario.
 
 ## Antes de empezar
 
 Necesitas tener listos los pasos anteriores:
 [Antigravity CLI](antigravity-cli.md) y [OpenSpec](openspec.md).
-
-## Paso 0: activar `verify` en OpenSpec (una sola vez por computadora)
-
-El `AGENTS.md` usa `/opsx:verify`, que **no viene en el perfil por defecto** de
-OpenSpec. Actívalo una vez:
-
-```bash
-openspec config profile
-```
-
-Elige **Change workflows only**, marca **`verify`** en la lista (deja marcados
-los que ya estaban) y confirma. Esto se guarda en tu computadora y aplica a
-todos tus proyectos a partir de aquí.
-
----
 
 ## Pasos para cada práctica nueva
 
@@ -60,10 +59,8 @@ Si dice `not a git repository`, primero ejecuta `git init`.
 ### 2. Inicializar OpenSpec
 
 ```bash
-openspec init --tools antigravity,agents --profile custom
+openspec init --tools antigravity,agents
 ```
-
-`--profile custom` usa los flujos que elegiste en el paso 0, incluido `verify`.
 
 ### 3. Descargar el `AGENTS.md` del curso
 
@@ -155,8 +152,8 @@ Luego abre `agy` en la raíz y pregúntale:
 ¿Qué reglas sigues en este proyecto?
 ```
 
-Debe responder que es un **tutor**, que trabaja con OpenSpec y que tú escribes la
-lógica central. Si responde como un asistente genérico, revisa que `AGENTS.md`
+Debe responder que es tu **mentor**, que trabaja con OpenSpec y que no hace el
+apply hasta que pases el cuestionario. Si responde como un asistente genérico, revisa que `AGENTS.md`
 esté en la raíz y que abriste `agy` desde esa misma carpeta.
 
 ## Nombres de los comandos en Antigravity CLI
@@ -169,5 +166,4 @@ escriben así:
 | `/opsx:explore` | `/openspec-explore` | `/opsx-explore` |
 | `/opsx:propose` | `/openspec-propose` | `/opsx-propose` |
 | `/opsx:apply` | `/openspec-apply-change` | `/opsx-apply` |
-| `/opsx:verify` | `/openspec-verify-change` | `/opsx-verify` |
 | `/opsx:archive` | `/openspec-archive-change` | `/opsx-archive` |

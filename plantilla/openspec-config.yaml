@@ -19,14 +19,14 @@ context: |
 
 rules:
   proposal:
-    - El "porqué" lo redacta el estudiante con sus palabras; el agente solo hace preguntas para mejorarlo.
+    - Explica el porqué en lenguaje simple, sin jerga innecesaria.
     - Alcance pequeño; un change debe poder terminarse en una o dos semanas de clase.
     - Incluye una sección "Fuera de alcance" con lo que NO se hará en este change.
   specs:
     - Cada requisito tiene al menos un escenario de éxito y uno de error o caso límite.
     - Los escenarios describen lo que el usuario ve o hace en la app, no detalles internos del código.
   design:
-    - Presenta al menos dos alternativas con ventajas y desventajas; la decisión la justifica el estudiante.
+    - Presenta al menos dos alternativas con ventajas y desventajas, y justifica la elegida.
     - Indica en qué capa de MVVM vive cada pieza (View, ViewModel, Model/Repository).
   tasks:
     - Cada tarea se termina y verifica en una sola sesión de trabajo.
@@ -35,8 +35,9 @@ rules:
 operations:
   apply:
     guidance:
-      - Una tarea a la vez; espera la confirmación del estudiante antes de pasar a la siguiente.
+      - "BLOQUEO: no implementes nada si docs/bitacora-ia.md no tiene el cuestionario de este change con Estado: Desbloqueado. Si falta, aplica el cuestionario de AGENTS.md primero."
+      - Explica cada tarea al implementarla y espera la confirmación del estudiante antes de pasar a la siguiente.
       - Al cerrar cada tarea corre `flutter analyze` y `flutter test` y explica el resultado.
   archive:
     guidance:
-      - Archiva solo si docs/bitacora-ia.md ya tiene la entrada de este change.
+      - Al archivar agrega en docs/bitacora-ia.md la línea "Archivado" del change.
