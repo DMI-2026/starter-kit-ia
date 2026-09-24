@@ -141,8 +141,7 @@ Una forma ordenada de trabajar, igual que en un equipo real:
 2. **Una rama por change**: `git switch -c agregar-login`.
 3. Trabajas el change con el agente (`/opsx:propose`, `/opsx:apply`...).
 4. **Tú** haces los commits y el `git push`. El `AGENTS.md` del curso le prohíbe
-   al agente hacerlos por su cuenta; la única excepción es el commit de la
-   bitácora al desbloquear el cuestionario.
+   al agente hacerlos por su cuenta.
 5. Con la rama ya en GitHub, pídele al agente que **abra el PR** con
    `Closes #<número>` en la descripción. Al fusionar el PR, la issue se cierra
    sola.

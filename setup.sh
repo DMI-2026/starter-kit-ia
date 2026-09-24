@@ -26,15 +26,29 @@ elif [ "$(git rev-parse --show-toplevel)" != "$(pwd -P)" ]; then
   - Si solo estás en una subcarpeta de tu práctica, entra a:  $top"
 fi
 
-# 2. OpenSpec para Antigravity (skills y workflows en .agents/)
-OPENSPEC_NO_ANIMATION=1 openspec init --tools antigravity --profile core </dev/null >/dev/null
+# 2. Activar /opsx:verify en OpenSpec (configuración global, sin borrar flujos que ya tengas)
+core='["propose","explore","apply","update","sync","archive"]'
+workflows="$(openspec config get workflows 2>/dev/null || true)"
+if [ "$(openspec config get profile 2>/dev/null)" != custom ] || [ -z "$workflows" ] || [ "$workflows" = "[]" ]; then
+  workflows="$core"
+fi
+case "$workflows" in
+  *'"verify"'*) ;;
+  *) workflows="${workflows%]},\"verify\"]" ;;
+esac
+openspec config set profile custom >/dev/null
+openspec config set workflows "$workflows" >/dev/null
+ok "Flujo verify activado en OpenSpec"
+
+# 3. OpenSpec para Antigravity (skills y workflows en .agents/)
+OPENSPEC_NO_ANIMATION=1 openspec init --tools antigravity --profile custom </dev/null >/dev/null
 ok "OpenSpec inicializado para Antigravity"
 
-# 3. AGENTS.md del curso (siempre la versión oficial)
+# 4. AGENTS.md del curso (siempre la versión oficial)
 curl -fsSL "$BASE_URL/plantilla/AGENTS.md" -o AGENTS.md
 ok "AGENTS.md descargado"
 
-# 4. config.yaml: solo si todavía no es la plantilla del curso, para no borrar lo que ya completaste
+# 5. config.yaml: solo si todavía no es la plantilla del curso, para no borrar lo que ya completaste
 if grep -q "Plantilla DMI 2026" openspec/config.yaml 2>/dev/null; then
   ok "openspec/config.yaml ya tiene la plantilla del curso (sin cambios)"
 else
@@ -42,7 +56,7 @@ else
   ok "openspec/config.yaml descargado"
 fi
 
-# 5. Bitácora
+# 6. Bitácora
 if [ ! -f docs/bitacora-ia.md ]; then
   mkdir -p docs
   echo "# Bitácora de IA" > docs/bitacora-ia.md

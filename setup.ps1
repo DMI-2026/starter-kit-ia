@@ -25,17 +25,30 @@
     throw "Esta carpeta no es la raíz de su propio repositorio git: git está usando el de $root`n  - Si esta carpeta ES tu práctica, conviértela en repositorio con:  git init`n    y vuelve a ejecutar el comando.`n  - Si solo estás en una subcarpeta de tu práctica, entra a:  $root"
   }
 
-  # 2. OpenSpec para Antigravity (skills y workflows en .agents/)
+  # 2. Activar /opsx:verify en OpenSpec (configuración global, sin borrar flujos que ya tengas).
+  # Se edita el archivo directamente: Windows PowerShell 5.1 pierde las comillas
+  # de un JSON pasado como argumento a `openspec config set`.
+  $cfgPath = (openspec config path | Out-String).Trim()
+  $cfg = if (Test-Path $cfgPath) { Get-Content $cfgPath -Raw | ConvertFrom-Json } else { [pscustomobject]@{} }
+  $workflows = if ($cfg.profile -eq 'custom' -and $cfg.workflows) { @($cfg.workflows) } else { @('propose', 'explore', 'apply', 'update', 'sync', 'archive') }
+  if ($workflows -notcontains 'verify') { $workflows += 'verify' }
+  $cfg | Add-Member -NotePropertyName profile -NotePropertyValue 'custom' -Force
+  $cfg | Add-Member -NotePropertyName workflows -NotePropertyValue $workflows -Force
+  New-Item -ItemType Directory -Force (Split-Path $cfgPath) | Out-Null
+  [IO.File]::WriteAllText($cfgPath, ($cfg | ConvertTo-Json -Depth 10))  # UTF-8 sin BOM
+  Ok 'Flujo verify activado en OpenSpec'
+
+  # 3. OpenSpec para Antigravity (skills y workflows en .agents/)
   $env:OPENSPEC_NO_ANIMATION = '1'
-  openspec init --tools antigravity --profile core | Out-Null
+  openspec init --tools antigravity --profile custom | Out-Null
   if ($LASTEXITCODE -ne 0) { throw 'openspec init falló. Ejecútalo a mano para ver el error.' }
   Ok 'OpenSpec inicializado para Antigravity'
 
-  # 3. AGENTS.md del curso (siempre la versión oficial)
+  # 4. AGENTS.md del curso (siempre la versión oficial)
   Invoke-WebRequest "$BaseUrl/plantilla/AGENTS.md" -OutFile AGENTS.md -UseBasicParsing -ErrorAction Stop
   Ok 'AGENTS.md descargado'
 
-  # 4. config.yaml: solo si todavía no es la plantilla del curso, para no borrar lo que ya completaste
+  # 5. config.yaml: solo si todavía no es la plantilla del curso, para no borrar lo que ya completaste
   $config = 'openspec/config.yaml'
   if ((Test-Path $config) -and (Select-String -Path $config -Pattern 'Plantilla DMI 2026' -Quiet)) {
     Ok "$config ya tiene la plantilla del curso (sin cambios)"
@@ -44,7 +57,7 @@
     Ok "$config descargado"
   }
 
-  # 5. Bitácora
+  # 6. Bitácora
   if (-not (Test-Path docs/bitacora-ia.md)) {
     New-Item -ItemType Directory -Force docs | Out-Null
     Set-Content docs/bitacora-ia.md '# Bitácora de IA' -Encoding utf8
