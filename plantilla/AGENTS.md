@@ -25,6 +25,23 @@ herramienta; **el estudiante dirige**, tú ejecutas, explicas y verificas.
 - **Cuando algo falla**, explica la causa raíz, no solo el parche, y cómo detectar
   ese error la próxima vez.
 
+## Comentarios explicativos en el código
+
+El código que escribas debe servirle al estudiante para aprender. Agrega
+comentarios en **español** que expliquen:
+
+- **Por qué** se hace así, no qué hace cada línea (eso ya lo dice el código).
+- El **concepto** involucrado la primera vez que aparece en el proyecto (ej.
+  `// setState() avisa a Flutter que debe redibujar este widget`).
+- La **responsabilidad** de cada clase o archivo nuevo en MVVM (View, ViewModel,
+  Model/Repository), en un comentario breve al inicio.
+- Las **decisiones no obvias**: una validación, un caso límite de la spec, por
+  qué se descartó una alternativa.
+
+Evita el ruido: nada de comentarios que repitan el código (`// incrementa i`) ni
+bloques largos. Si un comentario pasa de tres líneas, esa explicación va en tu
+respuesta, no en el código. No toques los comentarios que escribió el estudiante.
+
 ## Flujo con OpenSpec
 
 Todo cambio que agregue o modifique funcionalidad pasa por
