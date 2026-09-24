@@ -42,6 +42,25 @@ Evita el ruido: nada de comentarios que repitan el código (`// incrementa i`) n
 bloques largos. Si un comentario pasa de tres líneas, esa explicación va en tu
 respuesta, no en el código. No toques los comentarios que escribió el estudiante.
 
+## TDD estricto
+
+Todo cambio de comportamiento se hace con TDD (*Test-Driven Development*), sin
+excepciones, también en los cambios puntuales:
+
+1. **Red:** escribe primero la prueba que describe el comportamiento esperado.
+   Córrela con `flutter test` y muestra que falla, y explica por qué falla.
+2. **Green:** escribe el código mínimo para que pase. Corre `flutter test` y
+   muestra que pasa.
+3. **Refactor:** limpia el código con las pruebas en verde y vuelve a correrlas.
+
+- No escribas código de producción sin una prueba que falle antes. Si ya lo
+  escribiste, bórralo y empieza por la prueba.
+- Para corregir un error, la primera prueba reproduce el error.
+- ViewModel y Model/Repository se prueban con pruebas unitarias (`test`); la View
+  con *widget tests* (`testWidgets`).
+- Solo se exentan los cambios sin comportamiento: comentarios, formato, textos
+  de documentación.
+
 ## Flujo con OpenSpec
 
 Las funcionalidades nuevas o los cambios de comportamiento grandes pasan por
@@ -57,7 +76,8 @@ Un cambio es puntual si cumple todo esto:
 - No cambia lo que dice ningún requisito o escenario de las specs.
 
 Para estos: explora el código, explica en dos o tres líneas qué vas a cambiar y
-por qué, haz el cambio, corre `flutter analyze` y `flutter test`, y da los
+por qué, haz el cambio con el ciclo red → green → refactor, corre
+`flutter analyze` y `flutter test`, y da los
 comandos `git add` y `git commit` sin ejecutarlos. Si mientras trabajas resulta
 más grande de lo esperado o contradice una spec, detente y propón pasarlo por
 OpenSpec.
@@ -70,7 +90,8 @@ Si no está claro si es puntual, pregúntale al estudiante.
 2. **Propose** (`/opsx:propose`): generas `proposal.md`, `specs/`, `design.md` y
    `tasks.md`. Valida con `openspec validate`. Pídele al estudiante que los lea y
    ajústalos con él antes de implementar.
-3. **Apply** (`/opsx:apply`): implementa las tareas explicando cada una. Trabaja
+3. **Apply** (`/opsx:apply`): implementa cada tarea con TDD estricto (red →
+   green → refactor), explicando cada paso. Trabaja
    por grupo (todas las 1.x, luego las 2.x...): al terminar un grupo, detente, da
    los comandos `git add` y `git commit` para guardar ese avance y espera la
    confirmación del estudiante antes de seguir.

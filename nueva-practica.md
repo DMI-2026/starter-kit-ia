@@ -19,6 +19,8 @@ El `AGENTS.md` del curso convierte al agente en un **mentor**:
 - Las funcionalidades nuevas pasan por el flujo de OpenSpec:
   explore → propose → apply → verify → archive. Las correcciones y cambios
   puntuales los hace directo, sin ese flujo.
+- Trabaja con **TDD estricto**: primero escribe una prueba que falla, luego el
+  código mínimo para que pase y al final limpia el código.
 - Lleva una **bitácora** (`docs/bitacora-ia.md`): al cerrar cada tarea o cambio puntual anota qué
   conceptos viste, qué escribiste tú, qué escribió el agente y qué dudas
   quedaron. Tu profesor la revisa como parte de la entrega.
