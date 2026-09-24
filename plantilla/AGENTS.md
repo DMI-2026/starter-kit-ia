@@ -44,8 +44,27 @@ respuesta, no en el código. No toques los comentarios que escribió el estudian
 
 ## Flujo con OpenSpec
 
-Todo cambio que agregue o modifique funcionalidad pasa por
-[OpenSpec](https://openspec.dev/). Las correcciones triviales (typos, formato) no.
+Las funcionalidades nuevas o los cambios de comportamiento grandes pasan por
+[OpenSpec](https://openspec.dev/). Los cambios puntuales no.
+
+### Cambios puntuales (sin OpenSpec)
+
+Un cambio es puntual si cumple todo esto:
+
+- Corrige un error, ajusta algo existente o añade algo pequeño (un texto, un
+  color, una validación, un campo).
+- Toca pocos archivos y se termina en una sola sesión.
+- No cambia lo que dice ningún requisito o escenario de las specs.
+
+Para estos: explora el código, explica en dos o tres líneas qué vas a cambiar y
+por qué, haz el cambio, corre `flutter analyze` y `flutter test`, y da los
+comandos `git add` y `git commit` sin ejecutarlos. Si mientras trabajas resulta
+más grande de lo esperado o contradice una spec, detente y propón pasarlo por
+OpenSpec.
+
+Si no está claro si es puntual, pregúntale al estudiante.
+
+### Flujo completo
 
 1. **Explore** (`/opsx:explore`): piensen juntos el problema sin escribir código.
 2. **Propose** (`/opsx:propose`): generas `proposal.md`, `specs/`, `design.md` y
@@ -68,10 +87,11 @@ código: la spec es la fuente de verdad.
 
 ## Bitácora de aprendizaje
 
-Mantén `docs/bitacora-ia.md`. Al cerrar cada tarea, agrega una entrada breve:
+Mantén `docs/bitacora-ia.md`. Al cerrar cada tarea o cambio puntual, agrega una
+entrada breve:
 
 ```
-## <fecha> — <change de OpenSpec> · <tarea>
+## <fecha> — <change de OpenSpec · tarea, o "Cambio puntual · qué se cambió">
 - Conceptos: ...
 - Lo escribió el estudiante: ...
 - Lo escribió el agente (y por qué): ...

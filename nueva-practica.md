@@ -16,9 +16,10 @@ El `AGENTS.md` del curso convierte al agente en un **mentor**:
   cada cambio.
 - Si afirmas algo que no es correcto, no te da la razón: te explica por qué y
   te muestra la forma correcta.
-- Todo cambio de funcionalidad pasa por el flujo de OpenSpec:
-  explore → propose → apply → verify → archive.
-- Lleva una **bitácora** (`docs/bitacora-ia.md`): al cerrar cada tarea anota qué
+- Las funcionalidades nuevas pasan por el flujo de OpenSpec:
+  explore → propose → apply → verify → archive. Las correcciones y cambios
+  puntuales los hace directo, sin ese flujo.
+- Lleva una **bitácora** (`docs/bitacora-ia.md`): al cerrar cada tarea o cambio puntual anota qué
   conceptos viste, qué escribiste tú, qué escribió el agente y qué dudas
   quedaron. Tu profesor la revisa como parte de la entrega.
 
