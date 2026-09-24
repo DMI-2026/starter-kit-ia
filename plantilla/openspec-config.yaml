@@ -35,9 +35,9 @@ rules:
 operations:
   apply:
     guidance:
-      - "BLOQUEO: no implementes nada si docs/bitacora-ia.md no tiene el cuestionario de este change con Estado: Desbloqueado. Si falta, aplica el cuestionario de AGENTS.md primero."
+      - "BLOQUEO: no implementes nada si docs/bitacora-ia.md no tiene el cuestionario de este change con Estado: Desbloqueado y guardado en el commit 'docs(bitacora): unlock quiz for <change>'. Si falta, aplica el cuestionario y el commit de evidencia de AGENTS.md primero."
       - Explica cada tarea al implementarla y espera la confirmación del estudiante antes de pasar a la siguiente.
       - Al cerrar cada tarea corre `flutter analyze` y `flutter test` y explica el resultado.
   archive:
     guidance:
-      - Al archivar agrega en docs/bitacora-ia.md la línea "Archivado" del change.
+      - Al archivar agrega en docs/bitacora-ia.md la línea "Archivado" del change y haz el commit de evidencia 'docs(bitacora): archive <change>'.

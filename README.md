@@ -31,3 +31,6 @@ Sigue los archivos **en este orden**.
 | 5 | [`nueva-practica.md`](nueva-practica.md) | Preparar cada práctica con el `AGENTS.md` del curso |
 
 Los siguientes pasos se agregarán conforme avance el curso.
+
+¿Eres docente? Revisa [`docente.md`](docente.md): cómo revisar la evidencia de
+cada práctica y cómo proteger el historial en GitHub.

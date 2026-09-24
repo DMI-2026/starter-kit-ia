@@ -34,6 +34,9 @@ sabes lo que estás pidiendo y que leíste lo que se generó.
 - Todo queda registrado en `docs/bitacora-ia.md`: tus respuestas tal cual las
   escribiste y cuántos intentos te tomó cada una. Tu profesor revisa ese
   registro.
+- Al desbloquearse, el agente **hace un commit solo con la bitácora** (y push si
+  tu rama ya está en GitHub). Es el único commit que hace por su cuenta: deja la
+  evidencia en el historial con su fecha.
 
 **Lee los artefactos antes de pedir el apply.** Es la forma más rápida de pasar
 el cuestionario.

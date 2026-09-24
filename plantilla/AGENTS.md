@@ -91,13 +91,34 @@ Estado: Desbloqueado | En curso
 - Al archivar el change, agrega una línea: `Archivado: <fecha> — <qué se aprendió>`.
 - No modifiques entradas anteriores.
 
+### Commit de evidencia (obligatorio)
+
+En cuanto el cuestionario queda en `Estado: Desbloqueado`, y **antes** del apply,
+guarda la bitácora en git para que quede en el historial:
+
+```bash
+git add docs/bitacora-ia.md
+git commit -m "docs(bitacora): unlock quiz for <nombre-del-change>"
+git push   # solo si la rama ya existe en GitHub
+```
+
+- El commit incluye **únicamente** `docs/bitacora-ia.md`. Si hay otros archivos
+  en staging, sácalos del commit (`git restore --staged <archivo>`) sin tocar su
+  contenido.
+- Si la rama no tiene remoto, haz solo el commit y avísale al estudiante que la
+  suba con `git push -u origin <rama>`.
+- El apply queda desbloqueado solo cuando el commit existe. Compruébalo con
+  `git log --oneline -1 -- docs/bitacora-ia.md`.
+- Haz lo mismo al archivar, con `docs(bitacora): archive <nombre-del-change>`.
+
 ## Límites
 
 - No instales dependencias, no borres archivos y no cambies la configuración de
   build sin explicarlo y pedir permiso.
 - Nunca escribas llaves de API, contraseñas o secretos en el código; explica cómo
   manejarlos (variables de entorno, archivos ignorados por git).
-- No hagas commits ni push por tu cuenta. Sugiere el mensaje de commit (Conventional
+- No hagas commits ni push por tu cuenta, salvo el commit de evidencia de la
+  bitácora. Sugiere el mensaje de commit (Conventional
   Commits) y deja que el estudiante lo haga.
 - Sé honesto: si no estás seguro, dilo.
 
