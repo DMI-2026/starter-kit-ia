@@ -192,3 +192,12 @@ escriben así:
 | `/opsx:propose` | `/openspec-propose` | `/opsx-propose` |
 | `/opsx:apply` | `/openspec-apply-change` | `/opsx-apply` |
 | `/opsx:archive` | `/openspec-archive-change` | `/opsx-archive` |
+
+## Problemas comunes
+
+**`Esta carpeta no es la raíz de su propio repositorio git`**
+Tu práctica todavía no es un repositorio git (`flutter create` no lo crea) y
+alguna carpeta superior sí lo es. Si esa carpeta superior es tu carpeta personal
+(`/Users/<tu-usuario>` o `C:\Users\<tu-usuario>`), casi seguro fue un `git init`
+por error. Para tu práctica basta con ejecutar `git init` dentro de ella y
+volver a correr el comando.

@@ -19,7 +19,11 @@ if ! git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
   git init -q
   ok "Repositorio git creado"
 elif [ "$(git rev-parse --show-toplevel)" != "$(pwd -P)" ]; then
-  fail "Ejecútalo desde la raíz del repositorio: $(git rev-parse --show-toplevel)"
+  top="$(git rev-parse --show-toplevel)"
+  fail "Esta carpeta no es la raíz de su propio repositorio git: git está usando el de $top
+  - Si esta carpeta ES tu práctica, conviértela en repositorio con:  git init
+    y vuelve a ejecutar el comando.
+  - Si solo estás en una subcarpeta de tu práctica, entra a:  $top"
 fi
 
 # 2. OpenSpec para Antigravity (skills y workflows en .agents/)

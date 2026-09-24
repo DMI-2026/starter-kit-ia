@@ -22,7 +22,7 @@
     git init -q
     Ok 'Repositorio git creado'
   } elseif ((Resolve-Path $root).Path -ne (Get-Location).Path) {
-    throw "Ejecútalo desde la raíz del repositorio: $root"
+    throw "Esta carpeta no es la raíz de su propio repositorio git: git está usando el de $root`n  - Si esta carpeta ES tu práctica, conviértela en repositorio con:  git init`n    y vuelve a ejecutar el comando.`n  - Si solo estás en una subcarpeta de tu práctica, entra a:  $root"
   }
 
   # 2. OpenSpec para Antigravity (skills y workflows en .agents/)
