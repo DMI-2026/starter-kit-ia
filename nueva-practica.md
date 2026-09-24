@@ -43,9 +43,35 @@ el cuestionario.
 Necesitas tener listos los pasos anteriores:
 [Antigravity CLI](antigravity-cli.md) y [OpenSpec](openspec.md).
 
-## Pasos para cada práctica nueva
+## Opción rápida: un solo comando
 
-Hazlos en la **raíz** del repositorio de la práctica.
+Desde la **raíz** del repositorio de la práctica, ejecuta:
+
+**macOS / Linux:**
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/DMI-2026/starter-kit-ia/main/setup.sh | bash
+```
+
+**Windows (PowerShell):**
+
+```powershell
+irm https://raw.githubusercontent.com/DMI-2026/starter-kit-ia/main/setup.ps1 | iex
+```
+
+El script hace los pasos 1 a 5 de abajo: inicializa git si hace falta, configura
+OpenSpec para Antigravity, descarga el `AGENTS.md` y el `config.yaml` del curso y
+crea la bitácora. Si lo vuelves a ejecutar, actualiza el `AGENTS.md` pero **no
+borra** lo que ya completaste en tu `config.yaml`.
+
+Como siempre, [léelo antes de ejecutarlo](setup.sh). Al terminar, te faltan
+**dos cosas**: completar los `TODO(alumno)` de `openspec/config.yaml` (paso 4) y
+hacer el commit (paso 6).
+
+## Pasos para cada práctica nueva (manual)
+
+Si prefieres hacerlo a mano o el script falla, hazlos en la **raíz** del
+repositorio de la práctica.
 
 ### 1. Entrar al repositorio
 
@@ -59,7 +85,7 @@ Si dice `not a git repository`, primero ejecuta `git init`.
 ### 2. Inicializar OpenSpec
 
 ```bash
-openspec init --tools antigravity,agents
+openspec init --tools antigravity
 ```
 
 ### 3. Descargar el `AGENTS.md` del curso
@@ -120,7 +146,7 @@ New-Item -ItemType Directory -Force docs | Out-Null; Set-Content docs/bitacora-i
 ### 6. Guardar en git
 
 ```bash
-git add AGENTS.md docs/ openspec/ .agent/ .agents/
+git add AGENTS.md docs/ openspec/ .agents/
 git commit -m "chore: set up AGENTS.md and OpenSpec"
 ```
 
@@ -142,8 +168,7 @@ mi-practica/
 │   ├── specs/
 │   ├── changes/
 │   └── config.yaml
-├── .agent/
-└── .agents/skills/
+└── .agents/
 ```
 
 Luego abre `agy` en la raíz y pregúntale:

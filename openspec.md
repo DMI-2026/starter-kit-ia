@@ -88,25 +88,25 @@ Entra a la carpeta de tu proyecto y ejecuta **un solo comando**:
 
 ```bash
 cd mi-proyecto
-openspec init --tools antigravity,agents
+openspec init --tools antigravity
 ```
 
-La opción `--tools` configura las herramientas sin preguntas interactivas.
-Usamos **dos** destinos a propósito:
+La opción `--tools` configura Antigravity sin preguntas interactivas. Crea la
+carpeta **`.agents/`**, que leen tanto la CLI (`agy`) como la app y el IDE:
 
-| Destino | Carpeta que crea | Quién la lee |
+| Carpeta | Qué contiene | Cómo se usa |
 | --- | --- | --- |
-| `antigravity` | `.agent/skills/` y `.agent/workflows/` | Antigravity 2.0 e IDE |
-| `agents` | `.agents/skills/` | **Antigravity CLI** (`agy`) |
+| `.agents/skills/` | Skills de OpenSpec | En la CLI: `/openspec-propose`, etc. |
+| `.agents/workflows/` | Workflows de OpenSpec | En la app / IDE: `/opsx-propose`, etc. |
 
-La documentación de Antigravity indica que la CLI lee sus skills de
-**`.agents/skills/`** (plural), y `antigravity` escribe en `.agent/`
-(singular). Con los dos destinos funciona tanto en la terminal como en la app.
+> ¿Te creó una carpeta `.agent/` (en singular)? Tu OpenSpec es una versión
+> antigua. Actualízala (ver [Mantenerlo actualizado](#mantenerlo-actualizado)) y
+> vuelve a ejecutar el comando.
 
 ¿Quieres que los documentos se generen en español? Agrega `--language`:
 
 ```bash
-openspec init --tools antigravity,agents --language "Spanish"
+openspec init --tools antigravity --language "Spanish"
 ```
 
 > En la industria la mayoría de los equipos escriben las specs en inglés. Si
@@ -120,8 +120,9 @@ mi-proyecto/
 │   ├── specs/          # las specs del proyecto (la fuente de verdad)
 │   ├── changes/        # los cambios propuestos
 │   └── config.yaml     # configuración
-├── .agent/             # para Antigravity 2.0 / IDE
-└── .agents/skills/     # para Antigravity CLI
+└── .agents/
+    ├── skills/         # para Antigravity CLI
+    └── workflows/      # para Antigravity 2.0 / IDE
 ```
 
 Al terminar, `openspec init` imprime un mensaje con **la forma exacta de escribir
@@ -169,7 +170,7 @@ PowerShell bloquea los scripts de npm. Ejecuta una vez:
 **Los comandos `/openspec-*` no aparecen en `agy`**
 Revisa que exista `.agents/skills/` en tu proyecto y que ejecutaste `agy` desde
 la carpeta raíz del proyecto. Si no existe, vuelve a ejecutar
-`openspec init --tools antigravity,agents`.
+`openspec init --tools antigravity`.
 
 **`npm ERR! network` o `ETIMEDOUT`**
 Tu red está bloqueando el registro de npm (pasa en algunas redes
