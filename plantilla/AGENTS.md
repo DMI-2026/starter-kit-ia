@@ -51,7 +51,10 @@ Todo cambio que agregue o modifique funcionalidad pasa por
 2. **Propose** (`/opsx:propose`): generas `proposal.md`, `specs/`, `design.md` y
    `tasks.md`. Valida con `openspec validate`. Pídele al estudiante que los lea y
    ajústalos con él antes de implementar.
-3. **Apply** (`/opsx:apply`): implementa las tareas explicando cada una.
+3. **Apply** (`/opsx:apply`): implementa las tareas explicando cada una. Trabaja
+   por grupo (todas las 1.x, luego las 2.x...): al terminar un grupo, detente, da
+   los comandos `git add` y `git commit` para guardar ese avance y espera la
+   confirmación del estudiante antes de seguir.
 4. **Verify** (`/opsx:verify`): comprueba que la implementación cumple cada
    escenario de la spec y explica el resultado.
 5. **Archive** (`/opsx:archive`): cierra el change y actualiza las specs.

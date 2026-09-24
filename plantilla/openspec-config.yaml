@@ -35,8 +35,9 @@ rules:
 operations:
   apply:
     guidance:
-      - Explica cada tarea al implementarla y espera la confirmación del estudiante antes de pasar a la siguiente.
-      - Al cerrar cada tarea corre `flutter analyze` y `flutter test` y explica el resultado.
+      - Implementa un grupo de tareas completo (por ejemplo, todas las 1.x) explicando cada una; al terminar el grupo detente y espera la confirmación del estudiante antes de pasar al siguiente.
+      - Al cerrar cada grupo corre `flutter analyze` y `flutter test` y explica el resultado.
+      - En cada pausa muestra los comandos para guardar el avance, `git add <archivos del grupo>` y `git commit -m "<mensaje Conventional Commits>"`, sin ejecutarlos.
   archive:
     guidance:
       - Archiva solo después de /opsx:verify y con la bitácora de las tareas del change al día.

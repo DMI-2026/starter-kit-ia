@@ -48,6 +48,15 @@
   if ($LASTEXITCODE -ne 0) { throw 'openspec init falló. Ejecútalo a mano para ver el error.' }
   Ok 'OpenSpec inicializado para Antigravity'
 
+  # 3b. Skills del stack (autoskills detecta Flutter por pubspec.yaml; se instalan en .agents/skills)
+  if (Get-Command npx -ErrorAction SilentlyContinue) {
+    npx -y autoskills -y -a universal 2>&1 | Out-Null
+    if ($LASTEXITCODE -eq 0) { Ok 'Skills del proyecto instaladas con autoskills' }
+    else { Write-Host '! autoskills falló; puedes reintentar con: npx autoskills' -ForegroundColor Yellow }
+  } else {
+    Write-Host '! No encuentro npx (Node.js); omito autoskills. Instala Node.js y ejecuta: npx autoskills' -ForegroundColor Yellow
+  }
+
   # 4. AGENTS.md del curso (siempre la versión oficial)
   Invoke-WebRequest "$BaseUrl/plantilla/AGENTS.md" -OutFile AGENTS.md -UseBasicParsing -ErrorAction Stop
   Ok 'AGENTS.md descargado'
@@ -69,10 +78,11 @@
     Ok 'docs/bitacora-ia.md creado'
   }
 
+  $lock = if (Test-Path skills-lock.json) { ' skills-lock.json' } else { '' }
   Write-Host ''
   Write-Host 'Listo. Te faltan dos cosas:'
   Write-Host '  1. Completa las líneas TODO(alumno) de openspec/config.yaml'
   Write-Host '  2. Guarda la configuración en git:'
-  Write-Host '       git add AGENTS.md docs/ openspec/ .agents/'
+  Write-Host "       git add AGENTS.md docs/ openspec/ .agents/$lock"
   Write-Host '       git commit -m "chore: set up AGENTS.md and OpenSpec"'
 }

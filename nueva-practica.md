@@ -52,8 +52,10 @@ irm https://raw.githubusercontent.com/DMI-2026/starter-kit-ia/main/setup.ps1 | i
 
 El script hace los pasos 1 a 5 de abajo: inicializa git si hace falta, activa
 `/opsx:verify` en OpenSpec (sin quitar otros flujos que ya tengas), configura
-OpenSpec para Antigravity, descarga el `AGENTS.md` y el `config.yaml` del curso y
-crea la bitácora. Si lo vuelves a ejecutar, actualiza el `AGENTS.md` pero **no
+OpenSpec para Antigravity, instala con [autoskills](https://www.autoskills.sh/)
+las skills que corresponden a tu stack (requiere Node.js; si no lo tienes, lo
+omite y te avisa), descarga el `AGENTS.md` y el `config.yaml` del curso y crea la
+bitácora. Si lo vuelves a ejecutar, actualiza el `AGENTS.md` pero **no
 borra** lo que ya completaste en tu `config.yaml`.
 
 Como siempre, [léelo antes de ejecutarlo](setup.sh). Al terminar, te faltan
@@ -140,6 +142,10 @@ New-Item -ItemType Directory -Force docs | Out-Null; Set-Content docs/bitacora-i
 ```
 
 ### 6. Guardar en git
+
+Opcional, antes del commit: instala las skills de tu stack con
+`npx autoskills -a universal` (quedan en `.agents/skills/` y crea `skills-lock.json`;
+si lo usaste, agrega `skills-lock.json` al `git add`).
 
 ```bash
 git add AGENTS.md docs/ openspec/ .agents/

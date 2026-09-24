@@ -51,6 +51,17 @@ fi
 OPENSPEC_NO_ANIMATION=1 openspec init --tools antigravity --profile custom </dev/null >/dev/null
 ok "OpenSpec inicializado para Antigravity"
 
+# 3b. Skills del stack (autoskills detecta Flutter por pubspec.yaml; se instalan en .agents/skills)
+if command -v npx >/dev/null; then
+  if npx -y autoskills -y -a universal </dev/null >/dev/null 2>&1; then
+    ok "Skills del proyecto instaladas con autoskills"
+  else
+    echo "! autoskills falló; puedes reintentar con: npx autoskills" >&2
+  fi
+else
+  echo "! No encuentro npx (Node.js); omito autoskills. Instala Node.js y ejecuta: npx autoskills" >&2
+fi
+
 # 4. AGENTS.md del curso (siempre la versión oficial)
 curl -fsSL "$BASE_URL/plantilla/AGENTS.md" -o AGENTS.md
 ok "AGENTS.md descargado"
@@ -70,11 +81,12 @@ if [ ! -f docs/bitacora-ia.md ]; then
   ok "docs/bitacora-ia.md creado"
 fi
 
-cat <<'EOF'
+lock=""; [ -f skills-lock.json ] && lock=" skills-lock.json"
+cat <<EOF
 
 Listo. Te faltan dos cosas:
   1. Completa las líneas TODO(alumno) de openspec/config.yaml
   2. Guarda la configuración en git:
-       git add AGENTS.md docs/ openspec/ .agents/
+       git add AGENTS.md docs/ openspec/ .agents/$lock
        git commit -m "chore: set up AGENTS.md and OpenSpec"
 EOF
